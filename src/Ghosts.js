@@ -83,7 +83,7 @@ export default function Ghosts ({ evidence }) {
             <Grid xs={12} md={3} item key={item.name} style={{alignItems: alignment }} className={classes.right}>
               {item.evidence.map(key =>
                 <Box key={`${item.name}-${key}`}className={classes.row}>
-                  <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'} variant={'caption'}>{evidence[key].display} matches</Typography>
+                  <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'} variant={'caption'}>{evidence[key].display}</Typography>
                   {React.cloneElement(evidence[key].icon, {color: evidence[key].selected ? 'secondary' : 'inherit'})}
                 </Box>
               )}
