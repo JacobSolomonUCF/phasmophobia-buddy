@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default function EvidenceButtons ({items, handleClick}) {
   return (
     <Box>
-      <Grid container spacing={0}>
+      <Grid style={{justifyContent: 'center'}} container spacing={0}>
         {Object.values(items).map((item, index) => {
           return <Item handleClick={item => handleClick(item)} key={index} item={item}/>;
         })}
@@ -41,7 +41,7 @@ const Item = ({ item, handleClick }) => {
   const classes = useStyles();
   const {selected} = item;
   return (
-    <Grid classes={{ root: classes.root }} item xs={4}>
+    <Grid classes={{ root: classes.root }} item xs={'auto'} lg={4}>
       <Button onClick={() => handleClick(item)} classes={{ root: classes.button}} color={selected ? 'secondary' : 'primary'} variant={selected ? 'outlined' : 'contained'}>
         {selected ? <CheckCircle style={{ marginRight: 5 }}/> : <Add style={{ marginRight: 5 }}/>}
         {item.display}

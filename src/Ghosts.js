@@ -2,6 +2,9 @@ import { Box } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   right: {
+    paddingTop: 15,
     width: 225,
     justifyContent: 'space-around',
     display: 'flex',
@@ -32,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
   row: {
     display: 'flex',
-    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   label: {
@@ -46,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Ghosts ({ evidence }) {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
   const [possibleGhost, setPossibleGhost] = useState(GhostInfo);
 
@@ -63,24 +68,27 @@ export default function Ghosts ({ evidence }) {
     }));
   }, [evidence]);
 
+  const alignment = matches ? 'flex-end': 'flex-start';
   return (
     <Box className={classes.root}>
       {possibleGhost.map((item) =>
         <Box key={item.name} className={classes.item}>
-          <Box className={classes.col}>
-            <Typography variant={'h6'}>{item.name}</Typography>
-            <Typography className={classes.desc} variant={'caption'}>{item.desc}</Typography>
-            <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>Strengths:</span> {item.strengths}</Typography>
-            <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>Weaknesses:</span> {item.weaknesses}</Typography>
-          </Box>
-          <Box key={item.name} className={classes.right}>
-            {item.evidence.map(key =>
-              <Box key={`${item.name}-${key}`} className={classes.row}>
-                <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'} variant={'caption'}>{evidence[key].display}</Typography>
-                {React.cloneElement(evidence[key].icon, {color: evidence[key].selected ? 'secondary' : 'inherit'})}
-              </Box>
-            )}
-          </Box>
+          <Grid container spacing={0}>
+            <Grid xs={12} md={9} item className={classes.col}>
+              <Typography variant={'h6'}>{item.name}</Typography>
+              <Typography className={classes.desc} variant={'caption'}>{item.desc}</Typography>
+              <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>{matches}Strengths:</span> {item.strengths}</Typography>
+              <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>Weaknesses:</span> {item.weaknesses}</Typography>
+            </Grid>
+            <Grid xs={12} md={3} item key={item.name} style={{alignItems: alignment }} className={classes.right}>
+              {item.evidence.map(key =>
+                <Box key={`${item.name}-${key}`}className={classes.row}>
+                  <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'} variant={'caption'}>{evidence[key].display} matches</Typography>
+                  {React.cloneElement(evidence[key].icon, {color: evidence[key].selected ? 'secondary' : 'inherit'})}
+                </Box>
+              )}
+            </Grid>
+          </Grid>
         </Box>
       )}
     </Box>
