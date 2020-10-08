@@ -3,6 +3,10 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppToolBar from './AppToolBar';
 import Root from './Root';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-143267542-3');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const theme = createMuiTheme({
   palette: {
