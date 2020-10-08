@@ -1,50 +1,17 @@
 import { Box } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Add from '@material-ui/icons/Add';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import { makeStyles } from '@material-ui/core/styles';
 
-const EVIDENCES = {
-  emf_lvl5: {
-    display: 'EMF LVL 5',
-    selected: false,
-  },
-  orbs: {
-    display: 'Ghost Orbs',
-    selected: false,
-  },
-  ghost_writing: {
-    display: 'Ghost Writing',
-    selected: false,
-  },
-  fingerprints: {
-    display: 'Fingerprints',
-    selected: false,
-  },
-  freezing_temps: {
-    display: 'Freezing Temps',
-    selected: false,
-  },
-  spirit_box: {
-    display: 'Spirit Box',
-    selected: false,
-  },
-};
-
-export default function EvidenceButtons () {
-  const [state, setState] = useState(EVIDENCES);
-  const handleClick = (item, key) => {
-    const newState = { ...state, [key]: { ...item, selected: !item.selected } };
-    const numOfSelected = Object.values(newState).filter(item => item.selected).length;
-    numOfSelected <= 3 && setState(newState);
-  };
+export default function EvidenceButtons ({items, handleClick}) {
   return (
     <Box>
       <Grid container spacing={0}>
-        {Object.values(state).map((item, index) => {
-          return <Item handleClick={item => handleClick(item, Object.keys(state)[index])} key={index} item={item}/>;
+        {Object.values(items).map((item, index) => {
+          return <Item handleClick={item => handleClick(item)} key={index} item={item}/>;
         })}
       </Grid>
     </Box>
