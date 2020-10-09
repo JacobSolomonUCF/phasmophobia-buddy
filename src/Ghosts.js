@@ -8,7 +8,7 @@ import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '15px 25px',
+    padding: '15px 25px 75px 25px',
     overflowY: 'scroll',
     maxHeight: 'calc(100vh - 300px)',
     '&::-webkit-scrollbar': {
