@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import EvidenceButtons from './EvidenceButtons';
-import Ghosts from './Ghosts';
+import Ghosts, { GhostInfo } from './Ghosts';
 import AcUnit from '@material-ui/icons/AcUnit';
 import Radio from '@material-ui/icons/Radio';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -73,11 +73,27 @@ const EVIDENCES = {
 export default function Root () {
   const classes = useStyles();
   const [state, setState] = useState(EVIDENCES);
+  const [possibleGhost, setPossibleGhost] = useState(GhostInfo);
+
   const handleClick = (item) => {
     const newState = { ...state, [item.key]: { ...item, selected: !item.selected } };
     const numOfSelected = Object.values(newState).filter(item => item.selected).length;
     numOfSelected <= 3 && setState(newState);
   };
+
+  useEffect(() => {
+    const currentEvidence = Object.values(state).filter(item => item.selected);
+    if (currentEvidence.length === 0) return setPossibleGhost(GhostInfo);
+    setPossibleGhost(GhostInfo.filter(ghost => {
+      let numOfMatched = 0;
+      currentEvidence.forEach(item => {
+        if (ghost.evidence.includes(item.key)) {
+          numOfMatched++;
+        }
+      });
+      return numOfMatched === currentEvidence.length ? ghost : false;
+    }));
+  }, [state]);
 
   return (
     <Box className={classes.root}>
@@ -85,8 +101,8 @@ export default function Root () {
         <Typography variant="h5" className={classes.title}>
           Current Evidence
         </Typography>
-        <EvidenceButtons items={state} handleClick={item => handleClick(item)}/>
-        <Ghosts evidence={state}/>
+        <EvidenceButtons items={state} ghost={possibleGhost} handleClick={item => handleClick(item)}/>
+        <Ghosts evidence={state} ghost={possibleGhost}/>
       </Paper>
     </Box>
   );

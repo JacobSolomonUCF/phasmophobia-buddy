@@ -48,30 +48,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Ghosts ({ evidence }) {
+export default function Ghosts ({ ghost, evidence }) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
-  const [possibleGhost, setPossibleGhost] = useState(GhostInfo);
-
-  useEffect(() => {
-    const currentEvidence = Object.values(evidence).filter(item => item.selected);
-    if (currentEvidence.length === 0) return setPossibleGhost(GhostInfo);
-    setPossibleGhost(GhostInfo.filter(ghost => {
-      let numOfMatched = 0;
-      currentEvidence.forEach(item => {
-        if (ghost.evidence.includes(item.key)) {
-          numOfMatched++;
-        }
-      });
-      return numOfMatched === currentEvidence.length ? ghost : false;
-    }));
-  }, [evidence]);
 
   const alignment = matches ? 'flex-end': 'flex-start';
   return (
     <Box className={classes.root}>
-      {possibleGhost.map((item) =>
+      {ghost.map((item) =>
         <Box key={item.name} className={classes.item}>
           <Grid container spacing={0}>
             <Grid xs={12} md={9} item className={classes.col}>
@@ -95,7 +80,7 @@ export default function Ghosts ({ evidence }) {
   );
 }
 
-const GhostInfo = [
+export const GhostInfo = [
   {
     name: 'Spirit',
     evidence: ['fingerprints', 'spirit_box', 'ghost_writing'],
