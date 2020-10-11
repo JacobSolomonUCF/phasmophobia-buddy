@@ -16,6 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "aws s3 sync build/ s3://phasmophobiabuddy.com ",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E1QL07XA2LXQ97  --paths \"/*\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
