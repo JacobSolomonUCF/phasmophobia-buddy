@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: '15px 25px 75px 25px',
     overflowY: 'scroll',
-    maxHeight: 'calc(100vh - 300px)',
+    maxHeight: 'calc(100vh - 315px)',
     '&::-webkit-scrollbar': {
       display: 'none',
     }
@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     paddingBottom: 10,
     paddingTop: 10,
+    '&:last-child': {
+      marginBottom: 100,
+    }
   },
   col: {
     display: 'flex',
