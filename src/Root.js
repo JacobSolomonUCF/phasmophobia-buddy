@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { Box, Button, Tooltip } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import EvidenceButtons from './EvidenceButtons';
@@ -11,6 +11,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+import ReplayIcon from '@material-ui/icons/Replay';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,15 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 15,
     paddingBottom: 15,
     textAlign: 'center',
-  }
+  },
+  header: {
+    marginRight: 15,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  icon: {}
 }));
 
 const EVIDENCES = {
@@ -97,10 +106,18 @@ export default function Root () {
 
   return (
     <Box className={classes.root}>
-      <Paper classes={{root: classes.container}}>
-        <Typography variant="h5" className={classes.title}>
-          Current Evidence
-        </Typography>
+      <Paper classes={{ root: classes.container }}>
+        <Box className={classes.header}>
+          <Box style={{ width: 75 }}/>
+          <Typography variant="h5" className={classes.title}>
+            Current Evidence
+          </Typography>
+          <Tooltip arrow title={'Reset'} placement="top">
+            <Button onClick={() => setState(EVIDENCES)}>
+              <ReplayIcon classes={{ root: classes.icon }}/>
+            </Button>
+          </Tooltip>
+        </Box>
         <EvidenceButtons items={state} ghost={possibleGhost} handleClick={item => handleClick(item)}/>
         <Ghosts evidence={state} ghost={possibleGhost}/>
       </Paper>
