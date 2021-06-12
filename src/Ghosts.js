@@ -56,7 +56,7 @@ export default function Ghosts ({ ghost, evidence }) {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
 
-  const alignment = matches ? 'flex-end': 'flex-start';
+  const alignment = matches ? 'flex-end' : 'flex-start';
   return (
     <Box className={classes.root}>
       {ghost.map((item) =>
@@ -65,14 +65,15 @@ export default function Ghosts ({ ghost, evidence }) {
             <Grid xs={12} md={9} item className={classes.col}>
               <Typography variant={'h6'}>{item.name}</Typography>
               <Typography className={classes.desc} variant={'caption'}>{item.desc}</Typography>
-              <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>{matches}Strengths:</span> {item.strengths}</Typography>
-              <Typography variant={'caption'}><span style={{fontWeight: 'bold'}}>Weaknesses:</span> {item.weaknesses}</Typography>
+              <Typography variant={'caption'}><span style={{ fontWeight: 'bold' }}>{matches}Strengths:</span> {item.strengths}</Typography>
+              <Typography variant={'caption'}><span style={{ fontWeight: 'bold' }}>Weaknesses:</span> {item.weaknesses}</Typography>
             </Grid>
-            <Grid xs={12} md={3} item key={item.name} style={{alignItems: alignment }} className={classes.right}>
+            <Grid xs={12} md={3} item key={item.name} style={{ alignItems: alignment }} className={classes.right}>
               {item.evidence.map(key =>
-                <Box key={`${item.name}-${key}`}className={classes.row}>
-                  <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'} variant={'caption'}>{evidence[key].display}</Typography>
-                  {React.cloneElement(evidence[key].icon, {color: evidence[key].selected ? 'secondary' : 'inherit'})}
+                <Box key={`${item.name}-${key}`} className={classes.row}>
+                  <Typography className={classes.label} color={evidence[key].selected ? 'secondary' : 'initial'}
+                              variant={'caption'}>{evidence[key].display}</Typography>
+                  {React.cloneElement(evidence[key].icon, { color: evidence[key].selected ? 'secondary' : 'inherit' })}
                 </Box>
               )}
             </Grid>
@@ -167,5 +168,19 @@ export const GhostInfo = [
     desc: 'Oni\'s are cousin to the Demon and posses extreme strength. There have been rumours that they become more active around their prey.',
     strengths: 'Are more active when people are nearby and have been seen moving at great speed.',
     weaknesses: 'Being more active will make the Ghost easier to find and identify.',
+  },
+  {
+    name: 'Yokai',
+    evidence: ['spirit_box', 'orbs', 'ghost_writing'],
+    desc: 'A Yokai is a common type of ghost that is attracted to human voices. They can usually be found haunting family homes.',
+    strengths: 'Talking near a Yokai will anger it and increase it\'s chance of attacking.',
+    weaknesses: 'When hunting a Yokai can only hear voices close to it.',
+  },
+  {
+    name: 'Hantu',
+    evidence: ['fingerprints', 'orbs', 'ghost_writing'],
+    desc: 'A Hantu is a rare ghost that can be found in hot climates. They are known to attack often during cold weather.',
+    strengths: 'Lower temperatures can cause the Hantu to move at faster speeds.',
+    weaknesses: 'A Hantu will move slower in warmer areas.',
   }
 ];
