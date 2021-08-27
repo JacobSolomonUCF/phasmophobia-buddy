@@ -7,6 +7,7 @@ import EvidenceButtons from './EvidenceButtons';
 import Ghosts, { GhostInfo } from './Ghosts';
 import AcUnit from '@material-ui/icons/AcUnit';
 import Radio from '@material-ui/icons/Radio';
+import Dialpad from '@material-ui/icons/Dialpad';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
@@ -76,6 +77,12 @@ const EVIDENCES = {
     selected: false,
     key: 'spirit_box',
     icon: <Radio/>,
+  },
+  dots: {
+    display: 'DOTS Projector',
+    selected: false,
+    key: 'dots',
+    icon: <Dialpad/>,
   },
 };
 
