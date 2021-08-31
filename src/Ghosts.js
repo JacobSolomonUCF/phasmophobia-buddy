@@ -178,7 +178,7 @@ export const GhostInfo = [
   },
   {
     name: 'Hantu',
-    evidence: ['fingerprints', 'orbs', 'ghost_writing'],
+    evidence: ['fingerprints', 'orbs', 'freezing_temps'],
     desc: 'A Hantu is a rare ghost that can be found in hot climates. They are known to attack often during cold weather.',
     strengths: 'Lower temperatures can cause the Hantu to move at faster speeds.',
     weaknesses: 'A Hantu will move slower in warmer areas.',
