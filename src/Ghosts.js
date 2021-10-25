@@ -196,5 +196,34 @@ export const GhostInfo = [
     desc: 'Using a video camera is the only way to view a Goryo, when it passes through a DOTS projector.',
     strengths: 'Will usually only show itself on camera if there are no people nearby.',
     weaknesses: 'They are rarely seen far from their death place.'
+  },
+  {
+    name: 'Onryo',
+    evidence: ['spirit_box', 'orbs', 'freezing_temps'],
+    desc: 'The Onryo is often referred to as "The Wrathful Spirit". It steals souls from dying victims\' bodies to seek revenge. ' +
+      'This ghost has been known to fear any form of fire, and will do anything to be far from it',
+    strengths: 'Extinguishing a flame can cause an Onryo to attack.',
+    weaknesses: 'When threatened, this ghost will be less likely to hunt.'
+  },
+  {
+    name: 'The Twins',
+    evidence: ['emf_lvl5', 'spirit_box', 'freezing_temps'],
+    desc: 'These ghosts have been reported to mimic each other\'s actions. They alternate their attack to confuse their prey.',
+    strengths: 'Either Twin can be angered and initiate an attack on their prey.',
+    weaknesses: 'The Twins will often interact with the environment at the same time.'
+  },
+  {
+    name: 'Raiju',
+    evidence: ['emf_lvl5', 'orbs', 'dots'],
+    desc: 'A Raiju is a demon that thrives on electrical current. While generally calm, they can become agitated when overwhelmed with power.',
+    strengths: 'A Raiju can siphon power from nearby electrical devices, making it move master.',
+    weaknesses: 'Raiju are constantly disrupting electronic equipment, making it easier to track when attacking.'
+  },
+  {
+    name: 'Obake',
+    evidence: ['emf_lvl5', 'fingerprints', 'orbs'],
+    desc: 'Obake are terrifying shape-shifters, capable of taking on many forms. They have been seen taking on humanoid shapes to attract their prey.',
+    strengths: 'When interacting with the environment, an Obake will rarely leave a trace.',
+    weaknesses: 'Sometimes this ghost will shapeshift, leaving behind unique evidence.'
   }
 ];
