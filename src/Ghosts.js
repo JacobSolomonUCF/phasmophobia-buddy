@@ -225,5 +225,12 @@ export const GhostInfo = [
     desc: 'Obake are terrifying shape-shifters, capable of taking on many forms. They have been seen taking on humanoid shapes to attract their prey.',
     strengths: 'When interacting with the environment, an Obake will rarely leave a trace.',
     weaknesses: 'Sometimes this ghost will shapeshift, leaving behind unique evidence.'
+  },
+  {
+    name: 'The Mimic',
+    evidence: ['spirit_box', 'fingerprints', 'freezing_temps'],
+    desc: 'The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.',
+    strengths: "We're unsure what this ghost is capable of. Be Careful.",
+    weaknesses: 'Several reports have noted ghost orb sighting near mimics'
   }
 ];
